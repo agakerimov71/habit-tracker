@@ -21,16 +21,9 @@ def mark_done(data, name, day=None):
 
 def show(data, today):
     for name, days in data.items():
-        print(
-            name.ljust(20),
-            'серия:',
-            current_streak(
-                days,
-                today),
-            'дн., лучшая:',
-            best_streak(days),
-            'всего отметок:',
-            len(days))
+        streak = current_streak(days, today)
+        print(f'{name:<20} серия: {streak} дн., '
+              f'лучшая: {best_streak(days)}, всего отметок: {len(days)}')
 
 
 if __name__ == '__main__':

@@ -1,3 +1,4 @@
+"""Трекер привычек: добавление привычек и отметки о выполнении."""
 import datetime
 from storage import load,save
 from streaks import current_streak
@@ -10,6 +11,7 @@ def add_habit(data,name):
     data[name]=[]
     return True
 def mark_done(data,name,day=None):
+    # по умолчанию отмечаем сегодняшний день
     if day==None:
         day=datetime.date.today().isoformat()
     if day not in data[name]:

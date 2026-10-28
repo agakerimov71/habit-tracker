@@ -1,5 +1,7 @@
+"""Подсчет серий: сколько дней подряд привычка выполнялась."""
 import datetime
 def current_streak(days,today):
+    # идем назад от сегодняшнего дня, пока есть отметки
     s=0
     d=today
     while d.isoformat() in days:
@@ -7,6 +9,7 @@ def current_streak(days,today):
         d=d-datetime.timedelta(days=1)
     return s
 def best_streak(days):
+    # самая длинная серия за все время
     if len(days)==0: return 0
     dates=sorted(datetime.date.fromisoformat(x) for x in days)
     best=cur=1

@@ -1,5 +1,7 @@
+"""Хранение привычек в JSON-файле."""
 import json,os
 def load(path):
+    # если файла еще нет, начинаем с пустого словаря
     if not os.path.exists(path):
         return {}
     with open(path,encoding='utf-8') as f:

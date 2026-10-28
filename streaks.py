@@ -2,21 +2,21 @@
 import datetime
 def current_streak(days,today):
     # идем назад от сегодняшнего дня, пока есть отметки
-    s=0
-    d=today
-    while d.isoformat() in days:
-        s+=1
-        d=d-datetime.timedelta(days=1)
-    return s
+    streak=0
+    day=today
+    while day.isoformat() in days:
+        streak+=1
+        day=day-datetime.timedelta(days=1)
+    return streak
 def best_streak(days):
     # самая длинная серия за все время
     if len(days)==0: return 0
     dates=sorted(datetime.date.fromisoformat(x) for x in days)
-    best=cur=1
-    for a,b in zip(dates,dates[1:]):
-        if (b-a).days==1:
-            cur+=1
-            best=max(best,cur)
+    best=current=1
+    for prev,nxt in zip(dates,dates[1:]):
+        if (nxt-prev).days==1:
+            current+=1
+            best=max(best,current)
         else:
-            cur=1
+            current=1
     return best

@@ -1,7 +1,7 @@
 """Трекер привычек: добавление привычек и отметки о выполнении."""
 import datetime
 from storage import load,save
-from streaks import current_streak
+from streaks import current_streak,best_streak
 
 
 
@@ -18,13 +18,13 @@ def mark_done(data,name,day=None):
         data[name].append(day)
 def show(data,today):
     for name,days in data.items():
-        print(name.ljust(20),'серия:',current_streak(days,today),'дн.', 'всего отметок:',len(days))
+        print(name.ljust(20),'серия:',current_streak(days,today),'дн., лучшая:',best_streak(days), 'всего отметок:',len(days))
 
 if __name__=='__main__':
     data=load('habits.json')
     add_habit(data,'зарядка')
     add_habit(data,'читать 20 страниц')
-    for d in ['2026-10-25','2026-10-26','2026-10-27','2026-10-28']:
+    for d in ['2026-10-20','2026-10-21','2026-10-22','2026-10-23','2026-10-24','2026-10-26','2026-10-27','2026-10-28']:
         mark_done(data,'зарядка',d)
     mark_done(data,'читать 20 страниц','2026-10-28')
     save('habits.json',data)
